@@ -1,5 +1,5 @@
-# Используем образ Ubuntu для сборки
-image: Ubuntu1804 
+# Используем новый образ Ubuntu для поддержки Node.js и GLIBC
+image: Ubuntu2004 
 
 # Определяем окружение Node.js версии >=18.12.0
 stack: node 18 
