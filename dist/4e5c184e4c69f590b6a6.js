@@ -1,0 +1,1 @@
+export default function Hole(){var e=1,o=function(e){return document.getElementById("hole".concat(e))};!function t(){return setTimeout((function(){var n;o(e).className="hole",n=e=Math.floor(1+16*Math.random()),o(n).className="hole hole_has-goblin",t()}),1e3)}()}Hole();
