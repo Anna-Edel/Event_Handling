@@ -26,7 +26,7 @@ test_script:
 # Настройка деплоя на GitHub Pages
 deploy:
   provider: Pages
-  token: $GITHUB_TOKEN  # Токен доступа для деплоя
-  local_dir: dist  # Директория, из которой будут выгружаться файлы
+  token: "${GITHUB_TOKEN}"  # Используем правильное обрамление
+  local_dir: ./dist
   on:
     branch: main
