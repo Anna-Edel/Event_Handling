@@ -1,32 +1,19 @@
-# Используем новый образ Ubuntu для поддержки Node.js и GLIBC
-image: Ubuntu2004 
+version: 1.0.{build}
 
-# Определяем окружение Node.js версии >=18.12.0
-stack: node 18 
+environment:
+  GITHUB_TOKEN:
+    secure: BIFCQO8UFzCOXFKhCgm+AHaLSLCRAiO4fEojZoc/woIEXJcK5mLFTnIp6HuI69np
 
-# Настройка веток, для которых будет выполняться сборка
-branches:
-  only:
-    - main  
+image: Ubuntu 22.04
 
-# Кэширование папки node_modules для ускорения установки
-cache: node_modules  
+build:
+  verbosity: minimal
 
-# Установка зависимостей
 install:
-  - yarn install  
+  - yarn install
 
-# Сборка при каждом коммите
-build: on
-
-# Запуск Webpack для сборки проекта
 test_script:
   - yarn webpack
 
-# Настройка деплоя на GitHub Pages
-deploy:
-  provider: Pages
-  token: "${GITHUB_TOKEN}"  # Используем правильное обрамление
-  local_dir: ./dist
-  on:
-    branch: main
+artifacts:
+  - path: ./dist
