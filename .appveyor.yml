@@ -1,19 +1,20 @@
 version: 1.0.{build}
+image: Ubuntu2004
 
 environment:
   GITHUB_TOKEN:
     secure: BIFCQO8UFzCOXFKhCgm+AHaLSLCRAiO4fEojZoc/woIEXJcK5mLFTnIp6HuI69np
 
-image: Ubuntu 22.04
-
-build:
-  verbosity: minimal
-
 install:
-  - yarn install
+  - nvm install 18
+  - nvm use 18
+  - node -v
+  - npm -v
 
-test_script:
-  - yarn webpack
+build_script:
+  - yarn install
+  - yarn build
 
 artifacts:
-  - path: ./dist
+  - path: dist
+
