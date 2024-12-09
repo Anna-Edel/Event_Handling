@@ -1,10 +1,33 @@
-version: ~1.1.0
-build_script:
-  - yarn install
-  - yarn build
+# Используем образ Ubuntu для сборки
+image: Ubuntu1804 
+
+# Определяем окружение Node.js версии 12
+stack: node 12 
+
+# Настройка веток, для которых будет выполняться сборка
+branches:
+  only:
+    - main  
+
+# Кэширование папки node_modules для ускорения установки
+cache: node_modules  
+
+# Установка зависимостей
+install:
+  - yarn install  
+
+# Сборка при каждом коммите
+build: on
+
+# Запуск Webpack для сборки проекта
+test_script:
+  - yarn webpack
+
+# Настройка деплоя на GitHub Pages
 deploy:
-  provider: pages
-  repo: Anna-Edel/Event_Handling
-  token: $GITHUB_TOKEN
-  target_branch: gh-pages
-  local_dir: ./dist
+  provider: Pages
+  token: $GITHUB_TOKEN  # Токен доступа для деплоя
+  local_dir: dist  # Директория, из которой будут выгружаться файлы
+  on:
+    branch: main
+
