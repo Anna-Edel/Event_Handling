@@ -1,30 +1,10 @@
-version: 1.0.{build}
-image: Ubuntu
-branches:
-  only:
-    - main
-
-environment:
-  nodejs_version: "16"
-
-install:
-  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-  - export NVM_DIR=$HOME/.nvm
-  - source $NVM_DIR/nvm.sh
-  - nvm install $nodejs_version
-  - nvm use $nodejs_version
-  - node -v
-  - npm install -g yarn
-  - yarn install
-
+version: ~1.1.0
 build_script:
+  - yarn install
   - yarn build
-
-artifacts:
-  - path: dist
-    name: Build
-
 deploy:
-  provider: GitHubPages
-  artifact: dist
-  cleanup: false
+  provider: pages
+  repo: Anna-Edel/Event_Handling
+  token: $GITHUB_TOKEN
+  target_branch: gh-pages
+  local_dir: ./dist
