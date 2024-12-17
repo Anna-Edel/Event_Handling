@@ -1,28 +1,25 @@
 const deadGoblin = document.getElementById('dead');
 const lostGoblin = document.getElementById('lost');
 const getHoleClass = (index) => document.getElementById(`hole${index}`);
+
 // eslint-disable-next-line no-plusplus
 for (let i = 1; i <= 16; i++) {
-  const mole = document.getElementById(getHoleClass(i).id);
+  const mole = getHoleClass(i);
   mole.onclick = () => {
-    // eslint-disable-next-line eqeqeq
-    if (mole.className == 'hole hole_has-goblin') {
-      deadGoblin.textContent = Number(deadGoblin.textContent) + 1;
-      // eslint-disable-next-line eqeqeq
-      if (deadGoblin.textContent == 10) {
-        // eslint-disable-next-line no-alert
+    // Проверка на присутствие класса с гоблином
+    if (mole.classList.contains('hole_has-goblin')) {
+      deadGoblin.textContent = String(Number(deadGoblin.textContent) + 1);
+      if (deadGoblin.textContent === '10') {
         alert('Вы победили!');
-        deadGoblin.textContent = 0;
-        lostGoblin.textContent = 0;
+        deadGoblin.textContent = '0';
+        lostGoblin.textContent = '0';
       }
     } else {
-      lostGoblin.textContent = Number(lostGoblin.textContent) + 1;
-      // eslint-disable-next-line eqeqeq
-      if (lostGoblin.textContent == 5) {
-        // eslint-disable-next-line no-alert
+      lostGoblin.textContent = String(Number(lostGoblin.textContent) + 1);
+      if (lostGoblin.textContent === '5') {
         alert('Вы проиграли :-(');
-        deadGoblin.textContent = 0;
-        lostGoblin.textContent = 0;
+        deadGoblin.textContent = '0';
+        lostGoblin.textContent = '0';
       }
     }
   };
